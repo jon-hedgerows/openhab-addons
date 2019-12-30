@@ -930,10 +930,10 @@ public class SonosXMLParser {
     }
 
     /**
-     * The model name provided by upnp is formated like in the example form "Sonos PLAY:1" or "Sonos PLAYBAR"
+     * The model name provided by upnp is formatted like in the example form "Sonos PLAY:1" or "Sonos PLAYBAR"
      *
      * @param sonosModelName Sonos model name provided via upnp device
-     * @return the extracted players model name without column (:) character used for ThingType creation
+     * @return the extracted players model name without colon (:) or space ( ) characters used for ThingType creation
      */
     public static String extractModelName(String sonosModelName) {
         String ret = sonosModelName;
@@ -943,6 +943,9 @@ public class SonosXMLParser {
         }
         if (ret.contains(":")) {
             ret = ret.replace(":", "");
+        }
+        if (ret.contains(" ")) {
+            ret = ret.replace(" ", "");
         }
         return ret;
     }
